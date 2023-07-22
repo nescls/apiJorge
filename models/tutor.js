@@ -24,7 +24,7 @@ const Tutor = sequelize.define('Tutor', {
 },{tableName:"tutor"})
 
 Tutor.hasMany(DisponibilidadTutor, {foreignKey : 'tutor_id'})
-Tutor.hasMany(Tesis, {foreignKey : 'tutor_id'})
+Tutor.hasMany(Tesis, {foreignKey : 'tutor'})
 try{
 	Tutor.sync({alter:true});
 }catch(e){

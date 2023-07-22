@@ -17,6 +17,12 @@ const Facultad = sequelize.define('Facultad', {
 	},
 },{tableName:"facultad"})
 
+try{
+	Facultad.sync({alter:true});
+}catch(e){
+	console.log(e)
+}
+
 module.exports={
 	Facultad
 }
