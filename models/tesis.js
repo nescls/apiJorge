@@ -1,7 +1,6 @@
 const {sequelize} = require('../config/pg_config.js')
 const {DataTypes} = require('sequelize');
 const { Facultad } = require('../models/facultad.js');
-const { User } = require('../models/users.js');
 const { Escuela } = require('../models/escuela.js');
 
 const Tesis = sequelize.define('Tesis', {
@@ -62,12 +61,6 @@ const Tesis = sequelize.define('Tesis', {
 		}
 	},
 },{tableName:"tesis"})
-
-try{
-	Tesis.sync({alter:true});
-}catch(e){
-	console.log(e)
-}
 
 module.exports={
 	Tesis
