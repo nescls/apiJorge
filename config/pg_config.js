@@ -1,9 +1,9 @@
 
 const {Sequelize} = require('sequelize');
 
-const sequelize = new Sequelize('JorgeDataBase', 'postgres', '123', {
+const sequelize = new Sequelize('JorgeDataBase', 'postgres', 'admin', {
   host: 'localhost',
-  schema: 'public',
+  schema: 'doyanoMartinez',
   dialect: 'postgres',
 });
 

@@ -27,7 +27,7 @@ function downloadTesis(idTesis) {
 
 const createTesis = async (req, res) => {
   try {
-    const { titulo, resumen, fecha_publicacion, codigoQr, estatus = "Por Aprobar", tutor_id, correo, facultad_id, escuela_id } = req.body;
+    const { titulo, resumen, fecha_publicacion, codigoQr, estatus = "Por Aprobar", tutor_id, correo, facultad_id, escuela_id, idTesis } = req.body;
 
     
 
@@ -51,7 +51,7 @@ const createTesis = async (req, res) => {
         return res.status(404).json({ message: 'Escuela not found' });
       }
     }
-    const tesis = await Tesis.create({ titulo, resumen, fecha_publicacion, codigoQr, estatus, tutor_id, facultad_id, escuela_id, correo });
+    const tesis = await Tesis.create({ titulo, resumen, fecha_publicacion, codigoQr, estatus, tutor_id, facultad_id, escuela_id, correo, idTesis });
     res.status(201).json(tesis);
   } catch (error) {
     res.status(500).json({ error: error.message });

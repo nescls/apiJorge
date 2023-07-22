@@ -11,11 +11,15 @@ const Tesis = sequelize.define('Tesis', {
 		autoIncrement: true,
 		
 	},
+	idtesis:{
+		type:DataTypes.INTEGER,
+		allowNull:false,
+		unique:true,
+	},
 	titulo:{
 		type:DataTypes.STRING,
 		allowNull:false,
 		unique:true,
-		
 	},
 	resumen:{
 		type:DataTypes.STRING,

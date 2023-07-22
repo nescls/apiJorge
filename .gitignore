@@ -3,3 +3,4 @@ node_modules
 
 logs/errLog
 logs/reqLog.txt
+config/pg_config.js
