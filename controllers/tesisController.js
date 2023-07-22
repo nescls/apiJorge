@@ -21,9 +21,9 @@ const upload = multer({ storage: storage})
 
 const downloadTesis = async (req, res) =>  {
   const {idtesis}=req.body;
-  const filePath = path.join(__dirname, 'uploads', `${idtesis}.pdf`);
+  const filePath = path.join(`${__dirname}/../`, 'uploads', `${idtesis}.pdf`);
   const file = fs.readFileSync(filePath);
-  return file.toString('base64');
+  res.status(201).json({file: file.toString('base64')})
 }
 
 const createTesis = async (req, res) => {
