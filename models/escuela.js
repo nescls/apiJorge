@@ -1,5 +1,6 @@
 const {sequelize} = require('../config/pg_config.js')
 const {DataTypes} = require('sequelize');
+const { Tesis } = require('./tesis.js');
 
 const Escuela = sequelize.define('Escuela', {
 	id:{
@@ -15,12 +16,7 @@ const Escuela = sequelize.define('Escuela', {
 		
 	},
 },{tableName:"escuela"})
-Escuela.hasMany(Tesis, {foreignKey : 'tutor_id'});
-try{
-	Escuela.sync({alter:true});
-}catch(e){
-	console.log(e)
-}
+
 
 module.exports={
 	Escuela
