@@ -12,7 +12,7 @@ const Tesis = sequelize.define('Tesis', {
 		
 	},
 	idtesis:{
-		type:DataTypes.INTEGER,
+		type:DataTypes.STRING,
 		allowNull:false,
 		unique:true,
 	},

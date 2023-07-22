@@ -19,7 +19,8 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage})
 
 
-function downloadTesis(idtesis) {
+const downloadTesis = async (req, res) =>  {
+  const {idtesis}=req.body;
   const filePath = path.join(__dirname, 'uploads', `${idtesis}.pdf`);
   const file = fs.readFileSync(filePath);
   return file.toString('base64');
