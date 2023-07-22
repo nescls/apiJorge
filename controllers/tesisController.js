@@ -3,11 +3,24 @@ const { Tutor } = require('../models/tutor.js');
 const { User } = require('../models/users.js');
 const { Facultad } = require('../models/facultad.js');
 const { Escuela } = require('../models/escuela.js');
+const multer = require('multer')
+
+const storage = multer.diskStorage({
+  destination:(req, file, cb)=>{
+      cb(null, `${__dirname}/uploads`)
+  },
+  filename: (req, file, cb)=>{
+      console.log(file)
+      cb(null, `${req.body.idTesis}` + '.pdf')
+  }
+})
+const upload = multer({ storage: storage})
 
 const createTesis = async (req, res) => {
   try {
     const { titulo, resumen, fecha_publicacion, codigoQr, estatus, tutor_id, user_id, facultad_id, escuela_id } = req.body;
     if (tutor_id) {
+      upload.single('tesis')
       const tutor = await Tutor.findOne({ where: { id: tutor_id } });
       if (!tutor) {
         return res.status(404).json({ message: 'Tutor not found' });
@@ -40,7 +53,19 @@ const createTesis = async (req, res) => {
 
 const getTesis = async (req, res) => {
   try {
+    const whereClause = {};
+    if (req.query.titulo) whereClause.titulo = req.query.titulo;
+    if (req.query.resumen) whereClause.resumen = req.query.resumen;
+    if (req.query.fecha_publicacion) whereClause.fecha_publicacion = req.query.fecha_publicacion;
+    if (req.query.codigoQr) whereClause.codigoQr = req.query.codigoQr;
+    if (req.query.estatus) whereClause.estatus = req.query.estatus;
+    if (req.query.tutor) whereClause.tutor = req.query.tutor;
+    if (req.query.user_id) whereClause.user_id = req.query.user_id;
+    if (req.query.facultad_id) whereClause.facultad_id = req.query.facultad_id;
+    if (req.query.escuela_id) whereClause.escuela_id = req.query.escuela_id;
+
     const tesis = await Tesis.findAll({
+      where: whereClause,
       include: [
         { model: Tutor, as: 'tutor' },
         { model: User, as: 'user' },
