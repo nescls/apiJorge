@@ -15,7 +15,7 @@ const storage = multer.diskStorage({
   },
   filename: (req, file, cb)=>{
       console.log(file)
-      cb(null, `${req.body.idTesis}` + '.pdf')
+      cb(null, `${req.body.idtesis}` + '.pdf')
   }
 })
 const upload = multer({ storage: storage})

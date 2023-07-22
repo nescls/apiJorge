@@ -20,7 +20,7 @@ const upload = multer({ storage: storage})
 
 
 function downloadTesis(idtesis) {
-  const filePath = path.join(__dirname, 'uploads', `${idtesis}.pdf`);
+  const filePath = path.join(`${__dirname}/../`, 'uploads', `${idtesis}.pdf`);
   const file = fs.readFileSync(filePath);
   return file.toString('base64');
 }
