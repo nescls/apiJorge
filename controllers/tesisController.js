@@ -73,7 +73,6 @@ const getTesis = async (req, res) => {
       where: whereClause,
       include: [
         { model: Tutor, as: 'tutor' },
-        { model: User, as: 'user' },
         { model: Facultad, as: 'facultad' },
         { model: Escuela, as: 'escuela' }
       ]
