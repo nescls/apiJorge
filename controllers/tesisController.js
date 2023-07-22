@@ -36,12 +36,6 @@ const createTesis = async (req, res) => {
         return res.status(404).json({ message: 'Tutor not found' });
       }
     }
-    if (correo) {
-      const correo = await User.findOne({ where: { correo: correo } });
-      if (!correo) {
-        return res.status(404).json({ message: 'correo not found' });
-      }
-    }
     if (facultad_id) {
       const facultad = await Facultad.findOne({ where: { id: facultad_id } });
       if (!facultad) {
