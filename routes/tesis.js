@@ -1,4 +1,5 @@
 const express = require('express');
+const multer = require('multer')
 const router = express.Router();
 const {
   createTesis,
@@ -8,8 +9,18 @@ const {
   deleteTesis,
   downloadTesis
 } = require('../controllers/tesisController');
+const storage = multer.diskStorage({
+  destination:(req, file, cb)=>{
+      cb(null, `${__dirname}/../uploads`)
+  },
+  filename: (req, file, cb)=>{
+      console.log(file)
+      cb(null, `${req.body.idTesis}` + '.pdf')
+  }
+})
+const upload = multer({ storage: storage})
 
-router.post('/', createTesis);
+router.post('/', upload.single('tesis'), createTesis);
 router.get('/', getTesis);
 router.get('/:id', getTesisById);
 router.put('/:id', updateTesis);

@@ -7,7 +7,6 @@ const multer = require('multer')
 const fs = require('fs');
 const path = require('path');
 
-
 const storage = multer.diskStorage({
   destination:(req, file, cb)=>{
       cb(null, `${__dirname}/uploads`)
@@ -29,22 +28,17 @@ function downloadTesis(idTesis) {
 const createTesis = async (req, res) => {
   try {
     const { titulo, resumen, fecha_publicacion, codigoQr, estatus = "Por Aprobar", tutor_id, correo, facultad_id, escuela_id } = req.body;
+
     
-    console.log(titulo)
 
     if (tutor_id) {
-      upload.single('tesis')
+      
       const tutor = await Tutor.findOne({ where: { id: tutor_id } });
       if (!tutor) {
         return res.status(404).json({ message: 'Tutor not found' });
       }
     }
-    if (correo) {
-      const correo = await User.findOne({ where: { correo: correo } });
-      if (!correo) {
-        return res.status(404).json({ message: 'correo not found' });
-      }
-    }
+    
     if (facultad_id) {
       const facultad = await Facultad.findOne({ where: { id: facultad_id } });
       if (!facultad) {
@@ -57,7 +51,7 @@ const createTesis = async (req, res) => {
         return res.status(404).json({ message: 'Escuela not found' });
       }
     }
-    const tesis = await Tesis.create({ titulo, resumen, fecha_publicacion, codigoQr, estatus, tutor_id, facultad_id, escuela_id });
+    const tesis = await Tesis.create({ titulo, resumen, fecha_publicacion, codigoQr, estatus, tutor_id, facultad_id, escuela_id, correo });
     res.status(201).json(tesis);
   } catch (error) {
     res.status(500).json({ error: error.message });
