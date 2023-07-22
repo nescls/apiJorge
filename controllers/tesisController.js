@@ -4,6 +4,9 @@ const { User } = require('../models/users.js');
 const { Facultad } = require('../models/facultad.js');
 const { Escuela } = require('../models/escuela.js');
 const multer = require('multer')
+const fs = require('fs');
+const path = require('path');
+
 
 const storage = multer.diskStorage({
   destination:(req, file, cb)=>{
@@ -15,6 +18,13 @@ const storage = multer.diskStorage({
   }
 })
 const upload = multer({ storage: storage})
+
+
+function downloadTesis(idTesis) {
+  const filePath = path.join(__dirname, 'uploads', `${idTesis}.pdf`);
+  const file = fs.readFileSync(filePath);
+  return file.toString('base64');
+}
 
 const createTesis = async (req, res) => {
   try {
@@ -160,5 +170,6 @@ module.exports = {
   getTesis,
   getTesisById,
   deleteTesis,
-  updateTesis
+  updateTesis,
+  downloadTesis
 };

@@ -5,7 +5,8 @@ const {
   getTesis,
   getTesisById,
   updateTesis,
-  deleteTesis
+  deleteTesis,
+  downloadTesis
 } = require('../controllers/tesisController');
 
 router.post('/', createTesis);
@@ -13,5 +14,6 @@ router.get('/', getTesis);
 router.get('/:id', getTesisById);
 router.put('/:id', updateTesis);
 router.delete('/:id', deleteTesis);
+router.get('/dowload/:id',downloadTesis);
 
 module.exports = router;
