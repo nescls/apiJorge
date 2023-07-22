@@ -28,7 +28,7 @@ function downloadTesis(idTesis) {
 
 const createTesis = async (req, res) => {
   try {
-    const { titulo, resumen, fecha_publicacion, codigoQr, estatus, tutor_id, user_id, facultad_id, escuela_id } = req.body;
+    const { titulo, resumen, fecha_publicacion, codigoQr, estatus, tutor_id, correo, facultad_id, escuela_id } = req.body;
     if (tutor_id) {
       upload.single('tesis')
       const tutor = await Tutor.findOne({ where: { id: tutor_id } });
@@ -36,10 +36,10 @@ const createTesis = async (req, res) => {
         return res.status(404).json({ message: 'Tutor not found' });
       }
     }
-    if (user_id) {
-      const user = await User.findOne({ where: { correo: user_id } });
-      if (!user) {
-        return res.status(404).json({ message: 'User not found' });
+    if (correo) {
+      const correo = await User.findOne({ where: { correo: correo } });
+      if (!correo) {
+        return res.status(404).json({ message: 'correo not found' });
       }
     }
     if (facultad_id) {

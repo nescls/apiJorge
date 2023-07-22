@@ -37,13 +37,9 @@ const Tesis = sequelize.define('Tesis', {
 		type:DataTypes.STRING,
 		allowNull:true
 	},
-    user_id:{
+    correo:{
 		type:DataTypes.STRING,
 		allowNull:false,
-		references:{
-			model:User,
-			key: 'correo',
-		}
 	},
     facultad_id:{
 		type:DataTypes.INTEGER,
