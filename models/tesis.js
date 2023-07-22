@@ -2,6 +2,7 @@ const {sequelize} = require('../config/pg_config.js')
 const {DataTypes} = require('sequelize');
 const { Facultad } = require('../models/facultad.js');
 const { Escuela } = require('../models/escuela.js');
+const { Tutor } = require('./tutor.js');
 
 const Tesis = sequelize.define('Tesis', {
 	id:{
@@ -38,7 +39,11 @@ const Tesis = sequelize.define('Tesis', {
 	},
     tutor:{
 		type:DataTypes.STRING,
-		allowNull:true
+		allowNull:true,
+		references:{
+			model:Tutor,
+			key: 'id',
+		}
 	},
     correo:{
 		type:DataTypes.STRING,
