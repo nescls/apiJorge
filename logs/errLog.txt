@@ -1,1 +1,3 @@
 20230721	22:50:31	1eab6e56-ca5f-4ed4-af47-5c4c96132927	Error: ENOENT: no such file or directory, open 'C:\Users\Gabri\OneDrive\Desktop\programacion\apiJorge\routes\uploads\undefined.pdf'
+20230721	23:22:09	597b64bb-d2b2-480f-a8e2-66f6176d8dd5	Error: ENOENT: no such file or directory, open 'C:\Users\Gabri\OneDrive\Desktop\programacion\apiJorge\controllers\uploads\[object Object].pdf'
+20230721	23:24:36	594396dd-f600-4cbe-82c5-3bdea588236a	Error: ENOENT: no such file or directory, open 'C:\Users\Gabri\OneDrive\Desktop\programacion\apiJorge\uploads\[object Object].pdf'
