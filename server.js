@@ -39,12 +39,12 @@ app.use('/register', require('./routes/register'));
 app.use('/auth', require('./routes/auth'));
 app.use('/refresh',verifyJWT, require('./routes/refresh'));
 app.use('/logout', require('./routes/logout'));
-app.use('/tutor', require('./routes/tutor'));
-app.use('/tesis', require('./routes/tesis'));
-app.use('/facultad', require('./routes/facultad'));
-app.use('/escuela', require('./routes/escuela'));
-app.use('/comentarios', require('./routes/comentario'));
-app.use('/autores', require('./routes/autores'));
+app.use('/tutor', verifyJWT,require('./routes/tutor'));
+app.use('/tesis',verifyJWT, require('./routes/tesis'));
+app.use('/facultad',verifyJWT, require('./routes/facultad'));
+app.use('/escuela',verifyJWT, require('./routes/escuela'));
+app.use('/comentarios', verifyJWT,require('./routes/comentario'));
+app.use('/autores',verifyJWT, require('./routes/autores'));
 
 app.all('*', (req, res) => {
     res.status(404);
