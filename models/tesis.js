@@ -40,10 +40,6 @@ const Tesis = sequelize.define('Tesis', {
     tutor:{
 		type:DataTypes.STRING,
 		allowNull:true,
-		references:{
-			model:Tutor,
-			key: 'id',
-		}
 	},
     correo:{
 		type:DataTypes.STRING,
