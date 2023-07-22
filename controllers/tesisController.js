@@ -29,9 +29,6 @@ const downloadTesis = async (req, res) =>  {
 const createTesis = async (req, res) => {
   try {
     const { titulo, resumen, fecha_publicacion, codigoQr, estatus = "Por Aprobar", tutor_id, correo, facultad_id, escuela_id, idtesis } = req.body;
-
-    
-
     if (tutor_id) {
       
       const tutor = await Tutor.findOne({ where: { id: tutor_id } });
