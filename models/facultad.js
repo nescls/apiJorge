@@ -15,7 +15,7 @@ const Facultad = sequelize.define('Facultad', {
 		
 	},
 },{tableName:"facultad"})
-
+Facultad.hasMany(Tesis, {foreignKey : 'tutor_id'})
 try{
 	Facultad.sync({alter:true});
 }catch(e){
