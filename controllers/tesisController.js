@@ -13,14 +13,14 @@ const storage = multer.diskStorage({
   },
   filename: (req, file, cb)=>{
       console.log(file)
-      cb(null, `${req.body.idTesis}` + '.pdf')
+      cb(null, `${req.body.idtesis}` + '.pdf')
   }
 })
 const upload = multer({ storage: storage})
 
 
-function downloadTesis(idTesis) {
-  const filePath = path.join(__dirname, 'uploads', `${idTesis}.pdf`);
+function downloadTesis(idtesis) {
+  const filePath = path.join(__dirname, 'uploads', `${idtesis}.pdf`);
   const file = fs.readFileSync(filePath);
   return file.toString('base64');
 }
