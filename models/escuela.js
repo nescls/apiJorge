@@ -16,7 +16,11 @@ const Escuela = sequelize.define('Escuela', {
 		
 	},
 },{tableName:"escuela"})
-
+try{
+	Escuela.sync({alter:true});
+}catch(e){
+	console.log(e)
+}
 
 module.exports={
 	Escuela

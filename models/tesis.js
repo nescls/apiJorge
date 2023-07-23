@@ -31,7 +31,7 @@ const Tesis = sequelize.define('Tesis', {
 		allowNull:true
 	},
     codigoQr:{
-		type:DataTypes.STRING,
+		type:DataTypes.BLOB,
 		allowNull:true
 	},
     estatus:{
@@ -65,6 +65,12 @@ const Tesis = sequelize.define('Tesis', {
 },{tableName:"tesis"})
 
 Tesis.hasMany(Autores, {foreignKey: "tesis_id"})
+
+try{
+	Tesis.sync({alter:true});
+}catch(e){
+	console.log(e)
+}
 
 module.exports={
 	Tesis
