@@ -6,6 +6,7 @@ const { Escuela } = require('../models/escuela.js');
 const multer = require('multer')
 const fs = require('fs');
 const path = require('path');
+const QRCode = require('qrcode');
 
 const storage = multer.diskStorage({
   destination:(req, file, cb)=>{
@@ -45,7 +46,10 @@ const createTesis = async (req, res) => {
         return res.status(404).json({ message: 'Escuela not found' });
       }
     }
-    const tesis = await Tesis.create({ titulo, resumen, fecha_publicacion, estatus, correo, facultad_id, escuela_id, tutor, idtesis });
+    const pdfUrl = path.join(`${__dirname}/../`, 'uploads', `${idtesis}.pdf`);
+    const codigoQr = await QRCode.toDataURL(pdfUrl);
+    
+    const tesis = await Tesis.create({ titulo, resumen, fecha_publicacion, codigoQr, estatus, tutor_id, facultad_id, escuela_id, correo, idtesis });
     res.status(201).json(tesis);
   } catch (error) {
     res.status(500).json({ error: error.message });
