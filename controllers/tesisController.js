@@ -30,7 +30,7 @@ const createTesis = async (req, res) => {
   console.log(req.body)
 
   try {
-    const { titulo, resumen, fecha_publicacion, estatus = "Por Aprobar", correo, facultad_id=1, escuela_id=2, tutor } = req.body;
+    const { titulo, resumen, fecha_publicacion, estatus = "Por Aprobar", correo, facultad_id, escuela_id, tutor, idtesis } = req.body;
     
     
     if (facultad_id) {
@@ -45,7 +45,7 @@ const createTesis = async (req, res) => {
         return res.status(404).json({ message: 'Escuela not found' });
       }
     }
-    const tesis = await Tesis.create({ titulo, resumen, fecha_publicacion, estatus, correo, facultad_id, escuela_id, tutor });
+    const tesis = await Tesis.create({ titulo, resumen, fecha_publicacion, estatus, correo, facultad_id, escuela_id, tutor, idtesis });
     res.status(201).json(tesis);
   } catch (error) {
     res.status(500).json({ error: error.message });
