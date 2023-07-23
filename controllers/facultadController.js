@@ -1,4 +1,5 @@
-const { Facultad } = require('./facultadController.js');
+const { Facultad } = require("../models/facultad.js");
+
 
 const createFacultad = async (req, res) => {
   try {
