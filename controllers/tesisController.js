@@ -27,15 +27,11 @@ const downloadTesis = async (req, res) =>  {
 }
 
 const createTesis = async (req, res) => {
+  console.log(req.body)
+
   try {
-    const { titulo, resumen, fecha_publicacion, codigoQr, estatus = "Por Aprobar", tutor_id, correo, facultad_id, escuela_id, idtesis } = req.body;
-    if (tutor_id) {
-      
-      const tutor = await Tutor.findOne({ where: { id: tutor_id } });
-      if (!tutor) {
-        return res.status(404).json({ message: 'Tutor not found' });
-      }
-    }
+    const { titulo, resumen, fecha_publicacion, estatus = "Por Aprobar", correo, facultad_id=1, escuela_id=2, tutor } = req.body;
+    
     
     if (facultad_id) {
       const facultad = await Facultad.findOne({ where: { id: facultad_id } });
@@ -49,7 +45,7 @@ const createTesis = async (req, res) => {
         return res.status(404).json({ message: 'Escuela not found' });
       }
     }
-    const tesis = await Tesis.create({ titulo, resumen, fecha_publicacion, codigoQr, estatus, tutor_id, facultad_id, escuela_id, correo, idtesis });
+    const tesis = await Tesis.create({ titulo, resumen, fecha_publicacion, estatus, correo, facultad_id, escuela_id, tutor });
     res.status(201).json(tesis);
   } catch (error) {
     res.status(500).json({ error: error.message });
