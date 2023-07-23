@@ -3,6 +3,7 @@ const {DataTypes} = require('sequelize');
 const { Facultad } = require('../models/facultad.js');
 const { Escuela } = require('../models/escuela.js');
 const { Tutor } = require('./tutor.js');
+const { Autores } = require('./autores.js');
 
 const Tesis = sequelize.define('Tesis', {
 	id:{
@@ -62,6 +63,8 @@ const Tesis = sequelize.define('Tesis', {
 		}
 	},
 },{tableName:"tesis"})
+
+Tesis.hasMany(Autores, {foreignKey: "tesis_id"})
 
 module.exports={
 	Tesis
