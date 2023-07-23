@@ -58,6 +58,8 @@ const createTesis = async (req, res) => {
 
 const getTesis = async (req, res) => {
   try {
+    console.log(req.query)
+
     const whereClause = {};
     if (req.query.titulo) whereClause.titulo = req.query.titulo;
     if (req.query.resumen) whereClause.resumen = req.query.resumen;
@@ -72,9 +74,9 @@ const getTesis = async (req, res) => {
     const tesis = await Tesis.findAll({
       where: whereClause,
       include: [
-        { model: Tutor, as: 'tutor' },
-        { model: Facultad, as: 'facultad' },
-        { model: Escuela, as: 'escuela' }
+        
+        /* { model: Facultad, as: 'facultad' },
+        { model: Escuela, as: 'escuela' } */
       ]
     });
     res.status(200).json(tesis);
@@ -89,10 +91,10 @@ const getTesisById = async (req, res) => {
     const tesis = await Tesis.findOne({
       where: { id },
       include: [
-        { model: Tutor, as: 'tutor' },
-        { model: User, as: 'user' },
+        
+        /* { model: User, as: 'user' },
         { model: Facultad, as: 'facultad' },
-        { model: Escuela, as: 'escuela' }
+        { model: Escuela, as: 'escuela' } */
       ]
     });
     if (tesis) {
