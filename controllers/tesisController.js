@@ -33,14 +33,8 @@ const createTesis = async (req, res) => {
   console.log(req.body)
 
   try {
-    const { titulo, resumen, fecha_publicacion, estatus = "Por Aprobar", tutor_id, correo, facultad_id, escuela_id, idtesis, objetivosEspecificos, autores , objetivoGeneral} = req.body;
-    if (tutor_id) {
-      
-      const tutor = await Tutor.findOne({ where: { id: tutor_id } });
-      if (!tutor) {
-        return res.status(404).json({ message: 'Tutor not found' });
-      }
-    }
+    const { titulo, resumen, fecha_publicacion, estatus = "Por Aprobar", tutor_id, correo, facultad_id, escuela_id, idtesis, objetivosEspecificos, autores , objGeneral, tutor} = req.body;
+    
     
     if (facultad_id) {
       const facultad = await Facultad.findOne({ where: { id: facultad_id } });
@@ -57,9 +51,11 @@ const createTesis = async (req, res) => {
     const pdfUrl = path.join(`${__dirname}/../`, 'uploads', `${idtesis}.pdf`);
     const codigoQr = await QRCode.toDataURL(pdfUrl);
 
-    const tesis = await Tesis.create({ titulo, resumen, fecha_publicacion, codigoQr, estatus, tutor_id, facultad_id, escuela_id, correo, idtesis });
+    const tesis = await Tesis.create({ titulo, resumen, fecha_publicacion, codigoQr, estatus, facultad_id, escuela_id, correo, idtesis, tutor });
 
-    await Objetivo.create({objetivoGeneral, tipo_objetivo: "General", idTesis: tesis.id})
+    await Objetivo.create({descripcion: objGeneral, tipo_objetivo: "General", tesis_id: tesis.id})
+
+    console.log(objetivosEspecificos)
 
     objetivosEspecificosJson = JSON.parse(objetivosEspecificos)
     console.log(objetivosEspecificosJson);
@@ -76,7 +72,7 @@ const createTesis = async (req, res) => {
 
    for (const autor of autoresJson) {
      try {
-       await Autores.create({nombre: autor.val, tesis_id: tesis.id})
+       await Autores.create({name: autor.val, tesis_id: tesis.id})
      } catch (error) {
        console.error(error);
      }
