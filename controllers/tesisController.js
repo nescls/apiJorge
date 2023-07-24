@@ -63,7 +63,7 @@ const createTesis = async (req, res) => {
 
     for (const objetivo of objetivosEspecificosJson) {
       try {
-        await Objetivo.create({descripcion: objetivo.value, tipo_objetivo: "Especifico", idTesis: tesis.id})
+        await Objetivo.create({descripcion: objetivo.val, tipo_objetivo: "Especifico", idTesis: tesis.id})
       } catch (error) {
         console.error(error);
       }
@@ -73,7 +73,7 @@ const createTesis = async (req, res) => {
 
    for (const autor of autoresJson) {
      try {
-       await Autores.create({nombre: autor.value, idTesis: tesis.id})
+       await Autores.create({nombre: autor.val, idTesis: tesis.id})
      } catch (error) {
        console.error(error);
      }
