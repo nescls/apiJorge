@@ -9,7 +9,7 @@ const Objetivo = sequelize.define('Objetivo', {
 		autoIncrement: true,
 		
 	},
-	descriptivo:{
+	descripcion:{
 		type:DataTypes.STRING,
 		allowNull:false,
 		unique:true,
