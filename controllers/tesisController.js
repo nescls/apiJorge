@@ -1,6 +1,8 @@
 const { Tesis } = require('../models/tesis.js');
 const { Tutor } = require('../models/tutor.js');
 const { User } = require('../models/users.js');
+const { Objetivo } = require('../models/objetivo.js');
+const { Autores } = require('../models/autores.js');
 const { Facultad } = require('../models/facultad.js');
 const { Escuela } = require('../models/escuela.js');
 const multer = require('multer')
@@ -29,7 +31,7 @@ const downloadTesis = async (req, res) =>  {
 
 const createTesis = async (req, res) => {
   try {
-    const { titulo, resumen, fecha_publicacion, estatus = "Por Aprobar", tutor_id, correo, facultad_id, escuela_id, idtesis } = req.body;
+    const { titulo, resumen, fecha_publicacion, estatus = "Por Aprobar", tutor_id, correo, facultad_id, escuela_id, idtesis, objetivosEspecificos, autores , objetivoGeneral} = req.body;
     if (tutor_id) {
       
       const tutor = await Tutor.findOne({ where: { id: tutor_id } });
@@ -52,8 +54,24 @@ const createTesis = async (req, res) => {
     }
     const pdfUrl = path.join(`${__dirname}/../`, 'uploads', `${idtesis}.pdf`);
     const codigoQr = await QRCode.toDataURL(pdfUrl);
-    
+
     const tesis = await Tesis.create({ titulo, resumen, fecha_publicacion, codigoQr, estatus, tutor_id, facultad_id, escuela_id, correo, idtesis });
+
+    await Objetivo.create({objetivoGeneral, tipo_objetivo: "General", idTesis: tesis.id})
+
+    objetivosEspecificosJson = JSON.parse(objetivosEspecificos)
+
+    objetivosEspecificosJson.forEach(async objetivo => {
+      await Objetivo.create({descripcion: objetivo.value, tipo_objetivo: "Especifico", idTesis: tesis.id})
+   });
+
+   autoresJson = JSON.parse(autores)
+
+   autoresJson.forEach(async autores => {
+     await Autores.create({nombre: autores.value, idTesis: tesis.id})
+  });
+
+
     res.status(201).json(tesis);
   } catch (error) {
     res.status(500).json({ error: error.message });

@@ -17,13 +17,13 @@ const Autores = sequelize.define('Autores', {
 	},
     apellido:{
 		type:DataTypes.STRING,
-		allowNull:false,
+		allowNull:true,
 		unique:true,
 		
 	},
     cedula:{
 		type:DataTypes.STRING,
-		allowNull:false,
+		allowNull:true,
 		unique:true,
 	},
     tesis_id:{
