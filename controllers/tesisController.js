@@ -63,22 +63,30 @@ const createTesis = async (req, res) => {
 
     objetivosEspecificosJson = JSON.parse(objetivosEspecificos)
 
-    objetivosEspecificosJson.forEach(async objetivo => {
-      await Objetivo.create({descripcion: objetivo.value, tipo_objetivo: "Especifico", idTesis: tesis.id})
-   });
+    for (const objetivo of objetivosEspecificosJson) {
+      try {
+        await Objetivo.create({descripcion: objetivo.value, tipo_objetivo: "Especifico", idTesis: tesis.id})
+      } catch (error) {
+        console.error(error);
+      }
+   }
 
    autoresJson = JSON.parse(autores)
 
-   autoresJson.forEach(async autores => {
-     await Autores.create({nombre: autores.value, idTesis: tesis.id})
-  });
-
+   for (const autor of autoresJson) {
+     try {
+       await Autores.create({nombre: autor.value, idTesis: tesis.id})
+     } catch (error) {
+       console.error(error);
+     }
+  }
 
     res.status(201).json(tesis);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
+
 
 const getTesis = async (req, res) => {
   try {
