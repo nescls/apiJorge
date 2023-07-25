@@ -15,6 +15,17 @@ const Escuela = sequelize.define('Escuela', {
 		unique:true,
 		
 	},
+	name:{
+		type:DataTypes.STRING,
+		allowNull:false,
+		unique:true,
+		
+	},
+	id_facultad:{
+		type:DataTypes.INTEGER,
+		allowNull:true,
+		
+	},
 },{tableName:"escuela"})
 try{
 	Escuela.sync({alter:true});

@@ -12,20 +12,16 @@ const Autores = sequelize.define('Autores', {
 	name:{
 		type:DataTypes.STRING,
 		allowNull:false,
-		unique:true,
+		
 		
 	},
     apellido:{
 		type:DataTypes.STRING,
 		allowNull:true,
-		unique:true,
+		
 		
 	},
-    cedula:{
-		type:DataTypes.STRING,
-		allowNull:true,
-		unique:true,
-	},
+    
     tesis_id:{
 		type:DataTypes.INTEGER,
 		allowNull:false,

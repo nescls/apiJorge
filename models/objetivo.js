@@ -12,13 +12,13 @@ const Objetivo = sequelize.define('Objetivo', {
 	descripcion:{
 		type:DataTypes.STRING,
 		allowNull:false,
-		unique:true,
+		unique:true
 		
 	},
     tipo_objetivo:{
 		type:DataTypes.STRING,
 		allowNull:false,
-		unique:true,
+		
 		
 	},
     tesis_id:{

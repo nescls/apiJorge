@@ -1,5 +1,5 @@
-const { DisponibilidadTutor } = require('../models/disponibilidad_tutor.js');
-const { Tutor } = require('../models/tutor.js');
+const { DisponibilidadTutor } = require('./disponibilidad_tutor.js');
+const { Tutor } = require('./tutor.js');
 
 const createDisponibilidadTutor = async (req, res) => {
   try {
