@@ -12,7 +12,7 @@ const Objetivo = sequelize.define('Objetivo', {
 	descripcion:{
 		type:DataTypes.STRING,
 		allowNull:false,
-		
+		unique:true
 		
 	},
     tipo_objetivo:{

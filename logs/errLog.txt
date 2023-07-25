@@ -3,3 +3,12 @@
 20230721	23:24:36	594396dd-f600-4cbe-82c5-3bdea588236a	Error: ENOENT: no such file or directory, open 'C:\Users\Gabri\OneDrive\Desktop\programacion\apiJorge\uploads\[object Object].pdf'
 20230722	20:02:28	47195b81-bd44-4e5a-8244-a3c57ad276f9	Error: Not allowed by CORS
 20230722	20:02:28	f4b0e7e1-6306-49a5-97d3-ecaf3132992c	Error: Not allowed by CORS
+20230724	21:20:58	cf56dfe3-9cb7-4700-be81-a25ec5078dd2	SyntaxError: Unexpected token '}', "{
+    "name":
+}" is not valid JSON
+20230724	21:21:07	f8658248-2493-44e8-8e83-215fcdb7366d	SyntaxError: Unexpected token '}', "{
+    "name":
+}" is not valid JSON
+20230724	21:21:13	d1736e6d-89a9-4d28-9aa3-0d36f9325bb7	SyntaxError: Unexpected token '}', "{
+    "name":
+}" is not valid JSON

@@ -2,8 +2,8 @@ const { Escuela } = require('../models/escuela.js');
 
 const createEscuela = async (req, res) => {
   try {
-    const { name } = req.body;
-    const escuela = await Escuela.create({ name });
+    const { name, id_facultad } = req.body;
+    const escuela = await Escuela.create({ name, id_facultad });
     res.status(201).json(escuela);
   } catch (error) {
     res.status(500).json({ error: error.message });

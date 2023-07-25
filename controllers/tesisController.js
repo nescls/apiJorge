@@ -48,6 +48,7 @@ const createTesis = async (req, res) => {
         return res.status(404).json({ message: 'Escuela not found' });
       }
     }
+
     const pdfUrl = path.join(`${__dirname}/../`, 'uploads', `${idtesis}.pdf`);
     const codigoQr = await QRCode.toDataURL(pdfUrl);
 
