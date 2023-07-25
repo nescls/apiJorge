@@ -31,7 +31,7 @@ const Tesis = sequelize.define('Tesis', {
 		allowNull:true
 	},
     codigoQr:{
-		type:DataTypes.BLOB,
+		type:DataTypes.TEXT("long"),
 		allowNull:true
 	},
     estatus:{

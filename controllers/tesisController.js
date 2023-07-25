@@ -21,7 +21,6 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage: storage})
 
-
 const downloadTesis = async (req, res) =>  {
   const {idtesis}=req.body;
   const filePath = path.join(`${__dirname}/../`, 'uploads', `${idtesis}.pdf`);
@@ -51,6 +50,8 @@ const createTesis = async (req, res) => {
 
     const pdfUrl = path.join(`${__dirname}/../`, 'uploads', `${idtesis}.pdf`);
     const codigoQr = await QRCode.toDataURL(pdfUrl);
+
+    console.log(codigoQr)
 
     const tesis = await Tesis.create({ titulo, resumen, fecha_publicacion, codigoQr, estatus, facultad_id, escuela_id, correo, idtesis, tutor });
 
@@ -128,6 +129,7 @@ const getTesisById = async (req, res) => {
       ]
     });
     if (tesis) {
+      
       res.status(200).json(tesis);
     } else {
       res.status(404).json({ message: 'Tesis not found' });
