@@ -44,6 +44,7 @@ app.use('/facultad', require('./routes/facultad'));
 app.use('/escuela', require('./routes/escuela'));
 app.use('/comentarios', require('./routes/comentario'));
 app.use('/autores', require('./routes/autores'));
+app.use('/objetivos', require('./routes/objetivos'));
 
 app.all('*', (req, res) => {
     res.status(404);
