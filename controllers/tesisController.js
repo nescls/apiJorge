@@ -22,8 +22,11 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage})
 
 const downloadTesis = async (req, res) =>  {
+  
   const {idtesis}=req.body;
-  const filePath = path.join(`${__dirname}/../`, 'uploads', `${idtesis}.pdf`);
+  const tesis = await Tesis.findOne({where: {id: idtesis}})
+  console.log(tesis)
+  const filePath = path.join(`${__dirname}/../`, 'uploads', `${tesis.idtesis}.pdf`);
   const file = fs.readFileSync(filePath);
   res.status(201).json({file: file.toString('base64')})
 }

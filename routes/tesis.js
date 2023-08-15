@@ -25,6 +25,6 @@ router.get('/', getTesis);
 router.get('/:id', getTesisById);
 router.put('/:id', updateTesis);
 router.delete('/:id', deleteTesis);
-router.get('/dowload/:id',downloadTesis);
+router.post('/dowload/',downloadTesis);
 
 module.exports = router;
